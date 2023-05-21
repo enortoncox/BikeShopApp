@@ -1,0 +1,98 @@
+<header>
+    <div class="header-desktop-container">
+      <div class="header-top">
+        <a [routerLink]="['/home']" class="logo">Mega Cycles</a>
+        <nav>
+          <ul *ngIf="currentUser.userId">
+            <li *ngFor="let item of loggedInItemList">
+              <a
+                [routerLink]="item.link"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: item.exact }"
+                >{{ item.name }}</a
+              >
+            </li>
+            <li><button (click)="logout()">Logout</button></li>
+          </ul>
+
+          <ul *ngIf="!currentUser.userId">
+            <li *ngFor="let item of loggedOutItemList">
+              <a
+                [routerLink]="item.link"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: item.exact }"
+                >{{ item.name }}</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="header-bottom">
+        <ul>
+          <li *ngFor="let item of navItemList">
+            <a
+              [routerLink]="item.link"
+              [queryParams]="item.queryParams"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: item.exact }"
+              >{{ item.name }}</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="header-mobile-container">
+      <a [routerLink]="['/home']" class="logo">Mega Cycles</a>
+      <button class="menu-button" (click)="toggleMenu()">{{buttonText}}</button>
+    </div>
+</header>
+
+<div class="menu" *ngIf="isMenuOpen">
+  <div class="header-menu-container">
+    <a [routerLink]="['/home']" class="logo">Mega Cycles</a>
+    <button class="menu-button" (click)="toggleMenu()">{{buttonText}}</button>
+  </div>
+  <ul *ngIf="currentUser.userId">
+    <li *ngFor="let item of navItemList" (click)="closeMenu()">
+      <a
+        [routerLink]="item.link"
+        [queryParams]="item.queryParams"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.exact }"
+        >{{ item.name }}</a
+      >
+    </li>
+    <li *ngFor="let item of loggedInItemList" (click)="closeMenu()">
+      <a
+        [routerLink]="item.link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.exact }"
+        >{{ item.name }}</a
+      >
+    </li>
+    <li><button (click)="logout()" (click)="closeMenu()" class="logout">Logout</button></li>
+  </ul>
+
+  <ul *ngIf="!currentUser.userId">
+    <li *ngFor="let item of loggedOutItemList" (click)="closeMenu()">
+      <a
+        [routerLink]="item.link"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.exact }"
+        >{{ item.name }}</a
+      >
+    </li>
+    <li *ngFor="let item of navItemList" (click)="closeMenu()">
+      <a
+        [routerLink]="item.link"
+        [queryParams]="item.queryParams"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.exact }"
+        >{{ item.name }}</a
+      >
+    </li>
+  </ul>
+</div>
+

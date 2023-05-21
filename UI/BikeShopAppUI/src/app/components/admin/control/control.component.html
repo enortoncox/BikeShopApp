@@ -1,0 +1,58 @@
+<main>
+  <div class="container">
+    <div class="main-container">
+
+      <div class="title-container">
+        <a [routerLink]="['/user/account']" class="btn">Account</a>
+        <h1>Admin Control Panel</h1>
+      </div>
+
+      <div class="controls-container">
+        <div class="product-controls">
+          <h2>Products</h2>
+          <div>
+            <h3>Create a new Product</h3>
+            <a class="btn" [routerLink]="['/products/new']">Create Product</a>
+          </div>
+          <div>
+            <h3>Choose an existing Product</h3>
+            <div class="select-container">
+            <select #productLetterSelect (change)="GetAllProductsThatStartWithLetter(productLetterSelect.value)">
+                <option *ngFor="let letter of alphabet" [value]="letter">{{letter.toUpperCase()}}</option>
+            </select>
+            <select #productSelect (change)="UpdateView()">
+                <option *ngFor="let product of products" [value]="product.productId">{{product.name}}</option>
+            </select>
+            </div>
+            <div class="btn-container-column" *ngIf="products.length > 0">
+              <a [routerLink]="['/products/', productSelect.value, 'update']" class="btn">Update Product</a>
+              <button class="btn" (click)="DeleteProduct(productSelect.value)">Delete Product</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="user-controls">
+          <h2>Users</h2>
+
+          <div>
+            <h3>Choose a User</h3>
+            <div class="select-container">
+            <select #userLetterSelect (change)="GetAllUsersThatStartWithLetter(userLetterSelect.value)">
+                <option *ngFor="let letter of alphabet" [value]=letter>{{letter.toUpperCase()}}</option>
+            </select>
+
+            <select #userSelect (change)="CheckIfAdmin(userSelect.value)">
+                <option *ngFor="let user of users" [value]="user.userId">{{user.name}}</option>
+            </select>
+        </div>
+            <div class="btn-container-column" *ngIf="users.length > 0">
+              <a [routerLink]="['/admin/user', userSelect.value, 'update']" class="btn">Update User</a>
+              <button class="btn" (click)="DeleteUser(userSelect.value)">Delete User</button>
+              <button class="btn" (click)="ChangeAdminStatus(userSelect.value)">{{adminButtonText}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

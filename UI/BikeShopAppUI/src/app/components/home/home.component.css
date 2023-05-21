@@ -1,0 +1,24 @@
+.categories-container{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.cat-btn{
+    border: 2px solid var(--third-color);
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: var(--primary-color);
+    text-decoration: none;
+    color: black;
+    width: 150px;
+}
+
+.cat-btn:hover{
+    transform: scale(1.02);
+    transition: 0.2s transform;
+    cursor: pointer;
+}
