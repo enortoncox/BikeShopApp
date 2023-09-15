@@ -1,0 +1,53 @@
+<main>
+  <div class="container">
+    <div class="main-container">
+      <div class="title-container">
+        <a [routerLink]="['/user/account']" class="btn">Account</a>
+        <h1>User Orders</h1>
+      </div>
+      
+      <div class="orders-container">
+        <div class="order" *ngFor="let order of orders">
+          <div class="order-header">
+            <div class="header-group">
+              <h2>ORDER PLACED</h2>
+              <h3>{{ order.orderedDate.split("T")[0] }}</h3>
+            </div>
+            <div class="header-group">
+              <h2>TOTAL</h2>
+              <h3>£{{ order.totalPrice }}</h3>
+            </div>
+            <div class="header-group">
+              <h2>DISPATCHED TO</h2>
+              <h3>{{ currentUser.address }}</h3>
+            </div>
+            <div class="header-group">
+              <h2>ORDER#</h2>
+              <h3>{{ order.orderId }}</h3>
+            </div>
+          </div>
+          <div class="order-body" *ngFor="let orderProd of ordersProducts">
+            <ng-container *ngIf="orderProd.orderId == order.orderId">
+              <a [routerLink]="['/products', product.productId]" class="order-product" *ngFor="let product of orderProd.products">
+                <img [src]="[domain + product.imgPath]" alt="Product Image" (error)="noImageFound($event)"
+                />
+                <div class="order-product-name">
+                  <h2>Name</h2>
+                  <h2>{{ product.name }}</h2>
+                </div>
+                <div class="order-product-price">
+                  <h2>Price</h2>
+                  <h2>£{{ product.price }}</h2>
+                </div>
+              </a>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+              
+      <div class="pages-container mt-2" *ngIf="pageNumbers.length > 1">
+        <button class="btn" *ngFor="let num of pageNumbers" (click)="changePage(num)" [ngClass]="num == currentPage ? 'currentPage' : ''">{{num}}</button>
+    </div>
+    </div>
+  </div>
+</main>

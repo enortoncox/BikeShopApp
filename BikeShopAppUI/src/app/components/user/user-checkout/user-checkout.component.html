@@ -1,0 +1,39 @@
+<main>
+    <div class="container">
+        <div class="main-container">
+
+          <div class="title-container">
+            <a [routerLink]="['/user/account']" class="btn">Account</a>
+            <h1>Checkout</h1>
+          </div>
+
+            <div *ngIf="cartProducts$ | async as cartProducts" class="cart-container">
+                <div class="cart-item" *ngFor="let product of cartProducts">
+                  <img [src]="domain + product.imgPath" alt="Product Image" (error)="noImageFound($event)"/>
+                  <div class="cart-text">
+                    <h2>{{ product.name }}</h2>
+                    <h2>£{{ product.price }}</h2>
+                  </div>
+                </div>
+            </div>
+
+            <div class="total-container">
+              <h2>Total: £{{ userCart.totalCost || 0 }}</h2>
+              <h2>Number of Items: {{ userCart.totalQuantity || 0 }}</h2>
+            </div>
+
+            <div class="checkout-container">
+              <div class="details-container">
+                <h2>Name: {{currentUser.name}}</h2>
+                <h2>Email: {{currentUser.email}}</h2>
+                <h2>Address: {{currentUser.address}}</h2>
+              </div>
+
+              <div class="btn-container-row">
+                <a [routerLink]="['/user/cart']" class="btn">Back to Cart</a>
+                <button (click)="purchaseItems()" *ngIf="userCart.totalQuantity > 0" class="btn">Buy Items</button>
+              </div>
+            </div>
+        </div>
+    </div>
+</main>

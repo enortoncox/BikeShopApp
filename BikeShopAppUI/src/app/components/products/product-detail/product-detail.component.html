@@ -1,0 +1,49 @@
+<main>
+    <div class="container">
+        <div class="detail-container">
+            <div class="img-container">
+                <img [src]="[domain + product.imgPath]" alt="Product Image" (error)="noImageFound($event)">
+            </div>
+            <div class="text-container">
+                <h1>{{product.name}}</h1>
+                <h2>Avg Rating: {{product.avgRating}}/10</h2>
+                <h2>Price: £{{product.price}}</h2>
+                <h2>Quantity: {{product.quantity}}</h2>
+
+                <div class="btn-container-row">
+                    <a class="btn" [routerLink]="['/products']" [queryParams]="{'category': product.categoryId}">Back</a>
+                    <h2 *ngIf="product.quantity <= 0">Out of Stock!</h2>
+                    <ng-container *ngIf="product.quantity > 0">
+                    <button class="btn" (click)="addProductToCart()" [disabled]="product.quantity <= 0">Add to Cart</button>
+                    <button class="btn" (click)="buyNow()" [disabled]="product.quantity <= 0">Buy Now</button>
+                    </ng-container>
+                </div>
+            </div>
+            
+            <div class="reviews-container">
+                <h2>Reviews</h2>
+                <a class="btn" [routerLink]="['/reviews', product.productId, 'new']" *ngIf="isLoggedIn">Leave a review!</a>
+
+                <div *ngFor="let reviewUser of reviewsUsers">
+                    <div class="review">
+                        <div class="user-section">
+                            <div>
+                            <a [routerLink]="['/reviews/user', reviewUser.user.userId]">{{reviewUser.user.name}}</a>
+                            <h4>{{reviewUser.review.rating}}/10</h4>
+                            </div>
+                            <div class="actions-section" *ngIf="reviewUser.review.userId == currentUser.userId">
+                                <a [routerLink]="['/reviews', product.productId, 'update', reviewUser.review.reviewId]" class="btn">Update</a>
+                                <button class="btn" (click)="deleteReview(reviewUser.review.reviewId)">Delete</button>
+                            </div>
+                        </div>
+                        <div class="review-section">
+                            <h3>{{reviewUser.review.title}}</h3>
+                            <p>{{reviewUser.review.text}}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

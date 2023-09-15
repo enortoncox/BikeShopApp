@@ -1,0 +1,36 @@
+<main>
+    <div class="container">
+        <div class="main-container">
+            <h1>Create a review for {{product.name}}</h1>
+
+            <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>Title</label>
+                    <div *ngIf="reviewForm.get('title')?.invalid && reviewForm.get('title')?.touched">
+                        <small class="error-message">Title is Required</small>
+                    </div>
+                    <input type="text" formControlName="title"/>
+                </div>
+                <div class="form-group">
+                    <label>Text</label>
+                    <div *ngIf="reviewForm.get('text')?.invalid && reviewForm.get('text')?.touched">
+                        <small class="error-message">Text is Required</small>
+                    </div>
+                    <input type="text" formControlName="text"/>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div *ngIf="reviewForm.get('rating')?.invalid && reviewForm.get('rating')?.touched">
+                        <small class="error-message">Rating is Required</small>
+                    </div>
+                    <input type="number" formControlName="rating" min="1" max="10"/>
+                </div>
+
+                <div class="btn-container-row mt-2">
+                    <a [routerLink]="['/products', productId]" class="btn">Back</a>
+                    <button type="submit" class="btn" [disabled]="reviewForm.invalid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

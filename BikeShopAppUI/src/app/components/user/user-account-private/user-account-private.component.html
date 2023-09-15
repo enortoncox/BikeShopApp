@@ -1,0 +1,37 @@
+<main>
+  <div class="container">
+    <div class="main-container-row">
+      <div class="account-details">
+
+        <div class="title-container">
+          <a [routerLink]="['/home']" class="btn">Home</a>
+          <h2>Account Details</h2>
+        </div>
+
+        <div class="account-body">
+          <img [src]="domain + currentUser.imgPath" alt="User Image" (error)="noImageFound($event)"/>
+          <div class="account-text">
+            <h3>UserId: {{ currentUser.userId }}</h3>
+            <h3>Name: {{ currentUser.name }}</h3>
+            <h3>Address: {{ currentUser.address }}</h3>
+            <h3>Email: {{ currentUser.email }}</h3>
+            <a class="btn" [routerLink]="['/reviews/user', currentUser.userId]"
+              >View Public Account</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="services">
+        <h2>Services</h2>
+        <div class="services-body">
+            <a [routerLink]="['/user/account/update']" class="btn">Update Details </a>
+            <a [routerLink]="['/user/account/update/password']" class="btn">Update Password</a>
+            <a [routerLink]="['/user/orders']"  class="btn">View Orders</a>
+            <a [routerLink]="['/user/cart']"  class="btn">View Cart</a>
+            <a [routerLink]="['/admin/control']" *ngIf="currentUser.isAdmin" class="btn">Admin Panel</a>
+        </div>
+    </div>
+    </div>
+  </div>
+</main>

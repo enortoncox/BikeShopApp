@@ -1,0 +1,46 @@
+<main>
+  <div class="container">
+    <div class="main-container">
+      <section class="account-section">
+
+        <div class="title-container">
+          <a [routerLink]="['/user/account']" class="btn">Account</a>
+          <h1>{{ user.name }}'s' Account</h1>
+        </div>
+
+        <div class="account-body">
+          <img
+            [src]="[domain + user.imgPath]"
+            alt=""
+            width="200"
+            (error)="noImageFound($event)"
+          />
+          <div class="account-details">
+            <h2>Account Details</h2>
+            <h3>UserId: {{ user.userId }}</h3>
+            <h3>Name: {{ user.name }}</h3>
+            <h3>Address: {{ user.address }}</h3>
+            <h3>Email: {{ user.email }}</h3>
+          </div>
+        </div>
+      </section>
+
+      <section class="reviews-section">
+        <h1>Reviews</h1>
+        <div class="reviews-container">
+          <div class="review-main" *ngFor="let reviewProduct of reviewsProducts">
+            <a [routerLink]="['/products', reviewProduct.product.productId]" class="product">
+              <h2>{{ reviewProduct.product.name }}</h2>
+              <img [src]="domain + reviewProduct.product.imgPath" alt="" (error)="noImageFound($event)">
+            </a>
+            <div class="review">
+              <h3>{{ reviewProduct.review.rating }}/10</h3>
+              <h2>{{ reviewProduct.review.title }}</h2>
+              <p>{{ reviewProduct.review.text }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
