@@ -1,5 +1,5 @@
 # BikeShopApp
-Bike Shop Application | Angular frontend with a .NET WebAPI backend
+Bike Shop Application | Angular frontend with a .NET WebAPI backend using EntityFramework with Sql Server
 
 The application is a bike shop website called Mega Cycles. It allows users to browse different bikes, purchase them and check their orders.
 Users can also make reviews for each bike which affects the average rating for that bike.
