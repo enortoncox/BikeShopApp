@@ -23,15 +23,15 @@ Users can also make reviews for each bike which affects the average rating for t
 - Error handling in the form of a modal message and an error page.
 - Images can be uploaded to the database for products and users.
 
-##Requirements & Setup
+## Requirements & Setup
 
--Requirements
-.NET 10 SDK
-Node.js 24 or newer
-SQL Server Express
-Windows with PowerShell
+### Requirements
+- .NET 10 SDK
+- Node.js 24 or newer
+- SQL Server Express
+- Windows with PowerShell
 
--Setup
+### Setup
 
 Clone the repository and open PowerShell in the BikeShopApp-main folder.
 
@@ -55,7 +55,7 @@ The Angular application is available at:
 
 http://localhost:4200
 
--Demo Accounts
+### Demo Accounts
 
 Admin
 
