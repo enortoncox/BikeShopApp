@@ -1,0 +1,11 @@
+<a [routerLink]="['/products', itemInfo.productId]" class="product-container">
+  <img
+    [src]="[domain + itemInfo.imgPath]"
+    alt="Product Image" (error)="noImageFound($event)"
+  />
+  <div class="product-body">
+    <h2>{{itemInfo.name}}</h2>
+    <h3>Avg Rating: {{itemInfo.avgRating}}/10</h3>
+    <h3>Price: £{{itemInfo.price}}</h3>
+  </div>
+</a>

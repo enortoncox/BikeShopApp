@@ -1,0 +1,81 @@
+h2{
+    font-size: 2rem;
+}
+
+.account-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-right: 2px solid var(--third-color);
+    padding: 1rem;
+    padding-right: 3rem;
+}
+
+.account-details img{
+    max-width: 300px;
+    border-radius: 10px;
+    margin: 1rem;
+    border: 2px solid var(--third-color);
+}
+
+.account-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-body a{
+    margin-top: 2rem;
+}
+
+.account-text{
+    text-align: left;
+}
+
+.account-text .btn{
+    max-width: 200px;
+}
+
+.services{
+    padding: 1rem;
+    padding-left: 3rem;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.services-body{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media screen and (max-width: 850px) {
+    .main-container-row{
+        flex-direction: column;
+    }
+
+    .account-details{
+        border-right: none;
+        padding: 1rem;
+        padding-right: 1rem;
+    }
+
+    .account-body{
+        flex-direction: column;
+    }
+
+    .services{
+        padding-left: 1rem;
+        border-top: 2px solid var(--third-color);
+        margin-top: 2rem;
+        width: 100%;
+        padding-top: 2rem;
+    }
+}

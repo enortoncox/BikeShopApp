@@ -1,0 +1,121 @@
+<header>
+  <div class="header-desktop-container">
+    <div class="header-top">
+      <a [routerLink]="['/home']" class="logo">Mega Cycles</a>
+      <nav>
+        @if (currentUser.userId) {
+          <ul>
+            @for (item of loggedInItemList; track item.name) {
+              <li>
+                <a
+                  [routerLink]="item.link"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: item.exact }"
+                  >{{ item.name }}</a
+                  >
+                </li>
+              }
+              <li><button (click)="logout()">Logout</button></li>
+            </ul>
+          }
+
+          @if (!currentUser.userId) {
+            <ul>
+              @for (item of loggedOutItemList; track item.name) {
+                <li>
+                  <a
+                    [routerLink]="item.link"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: item.exact }"
+                    >{{ item.name }}</a
+                    >
+                  </li>
+                }
+              </ul>
+            }
+          </nav>
+        </div>
+
+        <div class="header-bottom">
+          <ul>
+            @for (item of navItemList; track item.name) {
+              <li>
+                <a
+                  [routerLink]="item.link"
+                  [queryParams]="item.queryParams"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: item.exact }"
+                  >{{ item.name }}</a
+                  >
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+
+        <div class="header-mobile-container">
+          <a [routerLink]="['/home']" class="logo">Mega Cycles</a>
+          <button class="menu-button" (click)="toggleMenu()">{{buttonText}}</button>
+        </div>
+      </header>
+
+      @if (isMenuOpen) {
+        <div class="menu">
+          <div class="header-menu-container">
+            <a [routerLink]="['/home']" class="logo">Mega Cycles</a>
+            <button class="menu-button" (click)="toggleMenu()">{{buttonText}}</button>
+          </div>
+          @if (currentUser.userId) {
+            <ul>
+              @for (item of navItemList; track item.name) {
+                <li (click)="closeMenu()">
+                  <a
+                    [routerLink]="item.link"
+                    [queryParams]="item.queryParams"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: item.exact }"
+                    >{{ item.name }}</a
+                    >
+                  </li>
+                }
+                @for (item of loggedInItemList; track item.name) {
+                  <li (click)="closeMenu()">
+                    <a
+                      [routerLink]="item.link"
+                      routerLinkActive="active"
+                      [routerLinkActiveOptions]="{ exact: item.exact }"
+                      >{{ item.name }}</a
+                      >
+                    </li>
+                  }
+                  <li><button (click)="logout()" (click)="closeMenu()" class="logout">Logout</button></li>
+                </ul>
+              }
+              @if (!currentUser.userId) {
+                <ul>
+                  @for (item of loggedOutItemList; track item.name) {
+                    <li (click)="closeMenu()">
+                      <a
+                        [routerLink]="item.link"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: item.exact }"
+                        >{{ item.name }}</a
+                        >
+                      </li>
+                    }
+                    @for (item of navItemList; track item.name) {
+                      <li (click)="closeMenu()">
+                        <a
+                          [routerLink]="item.link"
+                          [queryParams]="item.queryParams"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{ exact: item.exact }"
+                          >{{ item.name }}</a
+                          >
+                        </li>
+                      }
+                    </ul>
+                  }
+                </div>
+              }
+

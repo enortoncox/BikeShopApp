@@ -1,0 +1,63 @@
+<main>
+  <div class="container">
+    <div class="main-container">
+      <div class="title-container">
+        <a [routerLink]="['/user/account']" class="btn">Account</a>
+        <h1>User Orders</h1>
+      </div>
+
+      <div class="orders-container">
+        @for (order of orders; track order) {
+          <div class="order">
+            <div class="order-header">
+              <div class="header-group">
+                <h2>ORDER PLACED</h2>
+                <h3>{{ order.orderedDate.split("T")[0] }}</h3>
+              </div>
+              <div class="header-group">
+                <h2>TOTAL</h2>
+                <h3>£{{ order.totalPrice }}</h3>
+              </div>
+              <div class="header-group">
+                <h2>DISPATCHED TO</h2>
+                <h3>{{ currentUser.address }}</h3>
+              </div>
+              <div class="header-group">
+                <h2>ORDER#</h2>
+                <h3>{{ order.orderId }}</h3>
+              </div>
+            </div>
+            @for (orderProd of ordersProducts; track orderProd) {
+              <div class="order-body">
+                @if (orderProd.orderId == order.orderId) {
+                  @for (product of orderProd.products; track product) {
+                    <a [routerLink]="['/products', product.productId]" class="order-product">
+                      <img [src]="[domain + product.imgPath]" alt="Product Image" (error)="noImageFound($event)"
+                        />
+                      <div class="order-product-name">
+                        <h2>Name</h2>
+                        <h2>{{ product.name }}</h2>
+                      </div>
+                      <div class="order-product-price">
+                        <h2>Price</h2>
+                        <h2>£{{ product.price }}</h2>
+                      </div>
+                    </a>
+                  }
+                }
+              </div>
+            }
+          </div>
+        }
+      </div>
+
+      @if (pageNumbers.length > 1) {
+        <div class="pages-container mt-2">
+          @for (num of pageNumbers; track num) {
+            <button class="btn" (click)="changePage(num)" [ngClass]="num == currentPage ? 'currentPage' : ''">{{num}}</button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</main>

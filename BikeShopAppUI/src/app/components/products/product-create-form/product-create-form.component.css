@@ -1,0 +1,11 @@
+h1{
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+select
+{
+    padding: 0.5rem;
+    border: 2px solid var(--third-color);
+    border-radius: 10px;
+}

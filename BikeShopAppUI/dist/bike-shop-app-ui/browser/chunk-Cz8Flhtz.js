@@ -1,0 +1,1 @@
+import{q as b,u as E}from"./main-L6KI6E7Q.js";import{i as k}from"./chunk-BLdEHuhM.js";var n=(()=>{class e{constructor(r){this.usersService=r}resolve(r,t){return this.usersService.GetUser(r.params.userId)}static{this.ɵfac=function(t){return new(t||e)(E(k))}}static{this.ɵprov=b({token:e,factory:e.ɵfac,providedIn:`root`})}}return e})();export{n as t};
